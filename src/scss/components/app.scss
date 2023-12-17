@@ -1,0 +1,130 @@
+.app_logo {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: $border;
+}
+
+.header {
+  border-bottom: $border;
+  height: 60px;
+  width: 100%;
+  background-color: $main-bg;
+  display: flex;
+  margin-bottom: 12px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 36px;
+
+  .menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 19px;
+
+    &_right {
+      ul {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        font-weight: 600;
+
+        li {
+          margin-left: 12px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.page_title {
+  padding: 0 0 24px 0;
+  border-bottom: $border;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &_content {
+    font-size: 20px;
+    font-weight: 600;
+    color: $txt-main-color;
+    margin-right: 20px;
+  }
+}
+
+.sider_footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top: $border;
+  height: 50px;
+}
+
+.ant-btn-primary {
+  box-shadow: none;
+}
+
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100vw;
+  background-image: url('../assets/image/background.jpg');
+  background-size: contain;
+
+  .wrapper {
+    overflow: hidden;
+    box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.1);
+    // box-shadow: $box-shadow;
+    padding: 36px 20px;
+    background-color: white;
+    border-radius: 12px;
+  }
+
+  &_header {
+    margin-bottom: 24px;
+    padding: 0 6px;
+
+    &_logo {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    & > span {
+      font-size: 16px;
+      color: $txt-second-color;
+      text-align: center;
+      width: 100%;
+      display: block;
+      margin-bottom: 24px;
+    }
+  }
+
+  &_body {
+    width: 500px;
+    transition: transform 0.3s ease, opacity 0.2s ease;
+
+    flex: 0 0 100%;
+    overflow: hidden;
+    display: flex;
+
+    &.move > .login_form {
+      transform: translateX(-500px);
+    }
+  }
+
+  &_form {
+    transition: all 0.5s ease;
+    flex: 0 0 100%;
+    width: 500px;
+    padding: 6px;
+  }
+}
