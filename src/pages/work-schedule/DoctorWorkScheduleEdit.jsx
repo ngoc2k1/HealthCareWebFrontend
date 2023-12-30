@@ -29,11 +29,20 @@ const DoctorWorkScheduleEdit = () => {
           const value = item.value;
           const start = value.split(" - ")[0];
           const end = value.split(" - ")[1];
-          times.push({
-            time: [dayjs(start, "HH:mm"), dayjs(end, "HH:mm")],
-            price: item.price,
-            id: item.id,
-          });
+          if(start<end){
+              times.push({
+                time: [dayjs(start, "HH:mm"), dayjs(end, "HH:mm")],
+                price: item.price,
+                id: item.id,
+              });
+          }
+          else {
+              times.push({
+                time: [dayjs(end, "HH:mm"), dayjs(start, "HH:mm")],
+                price: item.price,
+                id: item.id,
+              });
+          }
         }
         form.setFields([{ name: "times", value: times }]);
         setIsChangeDate(false);
@@ -137,19 +146,7 @@ const DoctorWorkScheduleEdit = () => {
           }}
           autoComplete="off"
           className="form"
-          // initialValues={{
-          //   date: dayjs("2023/01/01", "YYYY/MM/DD"),
-          //   times: [
-          //     {
-          //       time: [dayjs("08:00", "HH:mm"), dayjs("10:00", "HH:mm")],
-          //       price: 100000,
-          //     },
-          //     {
-          //       time: [dayjs("08:00", "HH:mm"), dayjs("10:00", "HH:mm")],
-          //       price: 100000,
-          //     },
-          //   ],
-          // }}
+         
         >
           <Form.Item
             name="date"
@@ -173,15 +170,7 @@ const DoctorWorkScheduleEdit = () => {
           <Form.Item label="Time" required>
             <Form.List
               name="times"
-              // rules={[
-              //   {
-              //     validator: async (_, names) => {
-              //       if (!names || names.length < 1) {
-              //         return Promise.reject(new Error("At least 1 schedules"));
-              //       }
-              //     },
-              //   },
-              // ]}
+            
             >
               {(fields, { add, remove }, { errors }) => (
                 <>
