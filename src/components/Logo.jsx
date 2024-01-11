@@ -5,7 +5,7 @@ const Logo = () => {
   return (
     <div className="logo">
       <HeartFilled className="logo_icon" />
-      <span className="logo_label">HealthCareApp</span>
+      <span className="logo_label"></span>
     </div>
   );
 };
