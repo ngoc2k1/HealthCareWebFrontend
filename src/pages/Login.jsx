@@ -14,7 +14,7 @@ const Login = () => {
       console.log(res);
       if (res.code === 200) {
         api.success({
-          message: "Success",
+          message: "",
           description: res.msg,
           placement: "top",
         });
@@ -22,7 +22,7 @@ const Login = () => {
         window.location.replace("/")
       } else if (res.code === 400) {
         api.error({
-          message: "Error",
+          message: "Thất bại",
           description: res.msg,
           placement: "top",
         });
@@ -37,7 +37,7 @@ const Login = () => {
           <div className="login_header_logo">
             <Logo />
           </div>
-          <span>Login to your account</span>
+          <span>Đăng nhập</span>
         </div>
         <div className={`login_body`}>
           <div className="login_form">
@@ -57,28 +57,28 @@ const Login = () => {
               onFinish={handleLogin}
             >
               <Form.Item
-                label="Phone Or Email"
+                label="Số điện thoại hoặc email"
                 name="phoneOrEmail"
                 rules={[
                   {
                     required: true,
-                    message: "Phone or email cannot be empty",
+                    message: "Số điện thoại hoặc email không được để trống",
                   },
                 ]}
               >
-                <Input placeholder="Phone Or Email" size="large" />
+                <Input placeholder="Số điện thoại hoặc email" size="large" />
               </Form.Item>
               <Form.Item
-                label="Password"
+                label="Mật khẩu"
                 name="password"
                 rules={[
                   {
                     required: true,
-                    message: "Password cannot be empty",
+                    message: "Mật khẩu không được để trống",
                   },
                 ]}
               >
-                <Input.Password placeholder="Password" size="large" />
+                <Input.Password placeholder="Mật khẩu" size="large" />
               </Form.Item>
               <Form.Item noStyle>
                 <Button
@@ -87,7 +87,7 @@ const Login = () => {
                   style={{ width: "100%", marginTop: 12 }}
                   size="large"
                 >
-                  Login as Admin
+                  Đăng nhập
                 </Button>
               </Form.Item>
             </Form>

@@ -20,7 +20,7 @@ const DoctorList = () => {
 
   const [page, setPage] = useState(1);
 
-  useEffect(() => {
+  useEffect(() => {//mỗi khi page thay đổi, update lại data
     doctorApi.getAll(page).then((res) => {
       console.log(res);
       setData(res);
@@ -43,19 +43,19 @@ const DoctorList = () => {
       render: (text) => <a>{text}</a>,
     },
     {
-      title: "Avatar",
+      title: "Ảnh đại diện",
       dataIndex: "avatar",
       key: "avatar",
       render: (url) => <Avatar src={url} size="large" />,
     },
     {
-      title: "Name",
+      title: "Tên",
       dataIndex: "name",
       key: "name",
       render: (text) => <a>{text}</a>,
     },
     {
-      title: "Phone",
+      title: "Số điện thoại",
       dataIndex: "phone",
       key: "phone",
       render: (text) => <a>{text}</a>,
@@ -67,7 +67,7 @@ const DoctorList = () => {
       render: (text) => <a>{text}</a>,
     },
     {
-      title: "Gender",
+      title: "Giới tính",
       dataIndex: "gender",
       key: "gender",
       render: (text) => (
@@ -75,19 +75,19 @@ const DoctorList = () => {
       ),
     },
     {
-      title: "Specialty",
+      title: "Chuyên khoa",
       dataIndex: "specialty",
       key: "specialty",
       render: (item) => <a>{item.name}</a>,
     },
     {
-      title: "Created Date",
+      title: "Ngày tạo",
       dataIndex: "createdAt",
       key: "createdAt",
       render: (text) => <Tag color="magenta">{getTime(text)}</Tag>,
     },
     {
-      title: "Action",
+      title: "Hành động",
       key: "action",
       render: (_, record) => (
         <Space>
@@ -124,11 +124,11 @@ const DoctorList = () => {
       <PageTitle
         extra={
           <Link to={"/doctor/create"}>
-            <Button type="primary">Add Doctor</Button>
+            <Button type="primary">Thêm bác sĩ</Button>
           </Link>
         }
       >
-        Manage Doctor
+        Quản lý bác sĩ
       </PageTitle>
 
       <Table
@@ -150,7 +150,7 @@ const DoctorList = () => {
       />
 
       <Modal
-        title="Delete Doctor"
+        title="Xóa bác sĩ"
         open={!!deleteDoctorId}
         onOk={() => {
           doctorApi.deleteById(deleteDoctorId).then((res) => {
@@ -158,7 +158,7 @@ const DoctorList = () => {
               setData(res);
               setDeleteDoctorId(null);
               api.success({
-                message: "Success",
+                message: "",
                 description: "Xóa thành công",
                 placement: "top",
               });
@@ -173,7 +173,7 @@ const DoctorList = () => {
       </Modal>
 
       <Modal
-        title="Select Date"
+        title="Lịch làm việc"
         open={!!doctorIdEditSchedule}
         onOk={() => {}}
         onCancel={() => setDoctorIdEditSchedule()}
@@ -181,18 +181,18 @@ const DoctorList = () => {
       >
         <Form.Item>
           <Link to={`/doctor-work-schedule/update/${doctorIdEditSchedule}`}>
-            <Button>Add New Schedule</Button>
+            <Button>Thêm ngày mới</Button>
           </Link>
         </Form.Item>
         <Table
           className="addresses"
           columns={[
             {
-              title: "Date",
+              title: "Ngày",
               render: (_, row) => <a>{row}</a>,
             },
             {
-              title: "Action",
+              title: "Hành động",
               key: "action",
               render: (_, record) => (
                 <Space>

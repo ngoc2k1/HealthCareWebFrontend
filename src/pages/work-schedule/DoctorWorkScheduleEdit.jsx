@@ -96,8 +96,8 @@ const DoctorWorkScheduleEdit = () => {
             console.log(res);
             if (res.code === 200) {
               api.success({
-                message: "Success",
-                description: res.msg,
+                message: "Cập nhật thành công",
+                description: "",
                 placement: "top",
               });
             }
@@ -132,7 +132,7 @@ const DoctorWorkScheduleEdit = () => {
 
   return (
     <>
-      <PageTitle>Manage Doctor Work Schedule</PageTitle>
+      <PageTitle>Quản lý lịch làm việc bác sĩ</PageTitle>
       <Spin spinning={isChangeDate}>
         <Form
           name="form"
@@ -150,16 +150,16 @@ const DoctorWorkScheduleEdit = () => {
         >
           <Form.Item
             name="date"
-            label="Date"
+            label="Ngày"
             rules={[
               {
                 required: true,
-                message: "Date cannot be empty",
+                message: "Ngày không được để trống",
               },
             ]}
           >
             <DatePicker
-              placeholder="Select date"
+              placeholder="Chọn ngày"
               style={{ width: "100%" }}
               format={"YYYY/MM/DD"}
               disabled={!!queryString.parse(location.search).date}
@@ -167,7 +167,7 @@ const DoctorWorkScheduleEdit = () => {
             />
           </Form.Item>
 
-          <Form.Item label="Time" required>
+          <Form.Item label="Thời gian" required>
             <Form.List
               name="times"
             
@@ -184,13 +184,13 @@ const DoctorWorkScheduleEdit = () => {
                         rules={[
                           {
                             required: true,
-                            message: "Time cannot be empty",
+                            message: "Thời gian không được để trống",
                           },
                         ]}
                         style={{ width: "100%" }}
                       >
                         <TimePicker.RangePicker
-                          placeholder={["Start", "End"]}
+                          placeholder={["Bắt đầu", "Kết thúc"]}
                           format={"HH:mm"}
                           style={{ width: "100%" }}
                         />
@@ -200,12 +200,12 @@ const DoctorWorkScheduleEdit = () => {
                         rules={[
                           {
                             required: true,
-                            message: "Price cannot be empty",
+                            message: "Gía không được để trống",
                           },
                         ]}
                         style={{ marginLeft: 12 }}
                       >
-                        <InputNumber placeholder="Price" style={{ width: 160 }} addonAfter="đ" />
+                        <InputNumber placeholder="Gía" style={{ width: 160 }} addonAfter="đ" />
                       </Form.Item>
                       <DeleteOutlined
                         onClick={() => remove(name)}
@@ -222,7 +222,7 @@ const DoctorWorkScheduleEdit = () => {
                   )}
                   <Form.Item noStyle>
                     <Button onClick={() => add()} block icon={<PlusOutlined />}>
-                      Add Time
+                      Thêm
                     </Button>
                   </Form.Item>
                   <Form.ErrorList errors={errors} />
@@ -233,7 +233,7 @@ const DoctorWorkScheduleEdit = () => {
 
           <Form.Item label colon={false}>
             <Button type="primary" htmlType="submit" onClick={handleSubmit} style={{ width: 200 }}>
-              Save
+              Lưu
             </Button>
           </Form.Item>
         </Form>

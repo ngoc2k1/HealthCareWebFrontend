@@ -23,9 +23,9 @@ import fileApi from "../../api/fileApi";
 
 const { TextArea } = Input;
 
-const DoctorForm = () => {
-  const location = useLocation();
-  const { id } = useParams();
+const DoctorForm = () => {//quản lý và lấy thông tin cần thiết
+  const location = useLocation();//url hiện tại
+  const { id } = useParams();//lấy id từ url
   const [api, contextHolder] = notification.useNotification();
 
   const [isUploading, setIsUploading] = useState(false);
@@ -48,7 +48,7 @@ const DoctorForm = () => {
           console.log(res);
           if (res.code === 200) {
             api.success({
-              message: "Success",
+              message: "",
               description: res.msg,
               placement: "top",
             });
@@ -80,7 +80,7 @@ const DoctorForm = () => {
           console.log(res);
           if (res.code === 201) {
             api.success({
-              message: "Success",
+              message: "",
               description: res.msg,
               placement: "top",
             });
@@ -199,54 +199,45 @@ const DoctorForm = () => {
 
   return (
     <>
-      <PageTitle>{id ? "Edit Doctor" : "Create New Doctor"}</PageTitle>
+      <PageTitle>{id ? "Sửa bác sĩ" : "Thêm bác sĩ"}</PageTitle>
       <Form
         name="form"
         form={form}
         validateTrigger="onSubmit"
         layout="vertical"
         autoComplete="off"
-        onFinish={handleSubmit}
+        onFinish={handleSubmit}//call api
         style={{
           maxWidth: 600,
         }}
         requiredMark={false}
-        // initialValues={{
-        //   gender: "MALE",
-        //   name: "Doctor A",
-        //   phone: "0123456789",
-        //   email: "doctor@gmail.com",
-        //   password: "12345",
-        //   specialty: 2,
-        //   addressTest: "Address Test",
-        //   identityCard: "123456789",
-        //   healthInsurance: "987654321",
-        // }}
+      
       >
+       
         <Spin spinning={isUploading}>
-          <Form.Item
-            label="Name"
+          <Form.Item //check valid
+            label="Tên"
             name="name"
             rules={[
               {
                 required: true,
-                message: "Name cannot be empty",
+                message: "Tên không được để trống",
               },
             ]}
           >
-            <Input placeholder="Name" maxLength={200} showCount />
+            <Input placeholder="Tên" maxLength={200} showCount />
           </Form.Item>
           <Form.Item
-            label="Phone"
+            label="Số điện thoại "
             name="phone"
             rules={[
               {
                 required: true,
-                message: "Phone cannot be empty",
+                message: "Số điện thoại không được để trống",
               },
             ]}
           >
-            <Input placeholder="Phone" maxLength={200} showCount />
+            <Input placeholder="Số điện thoại" maxLength={200} showCount />
           </Form.Item>
 
           <Form.Item
@@ -255,37 +246,37 @@ const DoctorForm = () => {
             rules={[
               {
                 required: true,
-                message: "Email cannot be empty",
+                message: "Email không được để trống",
               },
             ]}
           >
             <Input placeholder="Email" maxLength={200} showCount />
           </Form.Item>
           {id ? (
-            <Form.Item label="Password (Để trống nếu không muốn cập nhật)" name="password">
-              <Input.Password placeholder="Password" maxLength={200} showCount />
+            <Form.Item label="Mật khẩu (Để trống nếu không muốn cập nhật)" name="password">
+              <Input.Password placeholder="Mật khẩu" maxLength={200} showCount />
             </Form.Item>
           ) : (
             <Form.Item
-              label="Password"
+              label="Mật khẩu"
               name="password"
               rules={[
                 {
                   required: true,
-                  message: "Password cannot be empty",
+                  message: "Mật khẩu không được để trống",
                 },
               ]}
             >
-              <Input.Password placeholder="Password" maxLength={200} showCount />
+              <Input.Password placeholder="Mật khâu" maxLength={200} showCount />
             </Form.Item>
           )}
           <Form.Item
-            label="Specialty"
+            label="Chuyên khoa"
             name="specialtyId"
             rules={[
               {
                 required: true,
-                message: "Specialty cannot be empty",
+                message: "Chuyên khoa không được để trống",
               },
             ]}
           >
@@ -294,18 +285,18 @@ const DoctorForm = () => {
               onChange={(value, selectedOptions) => {
                 console.log(value, selectedOptions);
               }}
-              placeholder="Select Specialty"
+              placeholder="Chọn Chuyên khoa"
             />
           </Form.Item>
           <Form.Item
-            label="Avatar"
+            label="Ảnh đại diện"
             name="avatar"
             required
             rules={[
               {
                 validator(_, value) {
                   if (fileList.length === 0) {
-                    return Promise.reject("Avatar cannot be empty");
+                    return Promise.reject("Ảnh đại diện không được để trống");
                   }
                   return Promise.resolve();
                 },
@@ -327,55 +318,54 @@ const DoctorForm = () => {
               {fileList.length >= 1 ? null : (
                 <div>
                   <PlusOutlined />
-                  <div>Upload</div>
+                  <div>Tải ảnh lên</div>
                 </div>
               )}
             </Upload>
           </Form.Item>
 
           <Form.Item
-            label="Birthday"
+            label="Ngày sinh"
             name="birthday"
             rules={[
               {
                 required: true,
-                message: "Birthday cannot be empty",
+                message: "Ngày sinh không được để trống",
               },
             ]}
           >
             <DatePicker
-              placeholder="Select Birthday"
+              placeholder="Chọn ngày sinh"
               style={{ width: "100%" }}
               format={"DD/MM/YYYY"}
             />
           </Form.Item>
 
           <Form.Item
-            label="Address Test"
+            label="Địa chỉ khám"
             name="addressTest"
             rules={[
               {
                 required: true,
-                message: "Address Test cannot be empty",
+                message: "Địa chỉ khám không được để trống",
               },
             ]}
           >
-            <TextArea rows={4} placeholder="Address Test" maxLength={5000} showCount />
+            <TextArea rows={4} placeholder="Địa chỉ khám" maxLength={5000} showCount />
           </Form.Item>
           <Form.Item
-            label="Gender"
+            label="Giới tính"
             name="gender"
             rules={[
               {
                 required: true,
-                message: "Gender cannot be empty",
+                message: "Giới tính không được để trống",
               },
             ]}
           >
             <Radio.Group>
-              <Radio value="MALE">MALE</Radio>
-              <Radio value="FEMALE">FEMALE</Radio>
-              <Radio value="OTHER">OTHER</Radio>
+              <Radio value="MALE">Nam</Radio>
+              <Radio value="FEMALE">Nữ</Radio>
             </Radio.Group>
           </Form.Item>
           <div
@@ -386,33 +376,33 @@ const DoctorForm = () => {
             }}
           >
             <Form.Item
-              label="Identity Card"
+              label="Căn cước công dân"
               name="identityCard"
               rules={[
                 {
                   required: true,
-                  message: "Identity Card cannot be empty",
+                  message: "Căn cước công dân không được để trống",
                 },
               ]}
             >
-              <Input placeholder="Identity Card" maxLength={200} showCount />
+              <Input placeholder="Căn cước công dân" maxLength={200} showCount />
             </Form.Item>
             <Form.Item
-              label="Health Insurance"
+              label="Bảo hiểm y tế"
               name="healthInsurance"
               rules={[
                 {
                   required: true,
-                  message: "Health Insurance cannot be empty",
+                  message: "Bảo hiểm y tế không được để trống",
                 },
               ]}
             >
-              <Input placeholder="Health Insurance" maxLength={200} showCount />
+              <Input placeholder="Bảo hiểm y tế" maxLength={200} showCount />
             </Form.Item>
           </div>
           <Form.Item noStyle>
             <Button type="primary" htmlType="submit" style={{ width: 200 }}>
-              Save
+              Lưu
             </Button>
           </Form.Item>
         </Spin>

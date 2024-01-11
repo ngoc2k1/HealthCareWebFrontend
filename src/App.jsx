@@ -17,12 +17,12 @@ const { Content, Sider } = Layout;
 const items = [
 
   {
-    label: "Doctor",
+    label: "Bác sĩ",
     url: "/doctor",
     icon: UserOutlined,
   },
   {
-    label: "Specialty",
+    label: "Chuyên khoa",
     url: "/specialty",
     icon: UnorderedListOutlined,
   },
@@ -97,7 +97,7 @@ const App = () => {
                     />
                     <div className="sider_footer">
                       <Button icon={<LogoutOutlined />} type="link" onClick={handleLogOut}>
-                        Logout
+                        Đăng xuất
                       </Button>
                     </div>
                   </Sider>

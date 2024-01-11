@@ -29,7 +29,7 @@ const SpecialtyForm = () => {
         console.log(res);
         if (res.code === 200) {
           api.success({
-            message: "Success",
+            message: "",
             description: res.msg,
             placement: "top",
           });
@@ -51,7 +51,7 @@ const SpecialtyForm = () => {
         console.log(res)
         if (res.code === 201) {
           api.success({
-            message: "Success",
+            message: "",
             description: res.msg,
             placement: "top",
           });
@@ -124,7 +124,7 @@ const SpecialtyForm = () => {
 
   return (
     <>
-      <PageTitle>{id ? "Update Specialty" : "Create New Specialty"}</PageTitle>
+      <PageTitle>{id ? "Sửa chuyên khoa" : "Tạo mới chuyên khoa"}</PageTitle>
 
       <Form
         name="form"
@@ -143,26 +143,26 @@ const SpecialtyForm = () => {
       >
         <Spin spinning={isUploading}>
           <Form.Item
-            label="Name"
+            label="Tên"
             name="name"
             rules={[
               {
                 required: true,
-                message: "Name cannot be empty",
+                message: "Tên không được để trống",
               },
             ]}
           >
-            <Input placeholder="Name" maxLength={200} showCount />
+            <Input placeholder="Nhập tên" maxLength={200} showCount />
           </Form.Item>
           <Form.Item
-            label="Image"
+            label="Ảnh"
             name="image"
             required
             rules={[
               {
                 validator(_, value) {
                   if (fileList.length === 0) {
-                    return Promise.reject("Image cannot be empty");
+                    return Promise.reject("Ảnh không được để trống");
                   }
                   return Promise.resolve();
                 },
@@ -184,14 +184,14 @@ const SpecialtyForm = () => {
               {fileList.length >= 1 ? null : (
                 <div>
                   <PlusOutlined />
-                  <div>Upload</div>
+                  <div>Tải ảnh lên</div>
                 </div>
               )}
             </Upload>
           </Form.Item>
           <Form.Item noStyle>
             <Button type="primary" htmlType="submit" style={{ width: 200 }}>
-              Save
+              Lưu
             </Button>
           </Form.Item>
         </Spin>

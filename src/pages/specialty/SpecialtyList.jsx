@@ -26,25 +26,25 @@ const SpecialtyList = () => {
       render: (text) => <a>{text}</a>,
     },
     {
-      title: "Image",
+      title: "Ảnh",
       dataIndex: "image",
       key: "image",
       render: (url) => <Avatar src={url} size="large" />,
     },
     {
-      title: "Name",
+      title: "Tên",
       dataIndex: "name",
       key: "name",
       render: (text) => <a>{text}</a>,
     },
     {
-      title: "Created Date",
+      title: "Ngày tạo",
       dataIndex: "createdAt",
       key: "createdAt",
       render: (text) => <Tag color="magenta">{getTime(text)}</Tag>,
     },
     {
-      title: "Action",
+      title: "Hành động",
       key: "action",
       render: (_, record) => (
         <Space>
@@ -72,11 +72,11 @@ const SpecialtyList = () => {
       <PageTitle
         extra={
           <Link to={"/specialty/create"}>
-            <Button type="primary">Add Specialty</Button>
+            <Button type="primary">Thêm chuyên khoa</Button>
           </Link>
         }
       >
-        Manage Specialty
+        Quản lý chuyên khoa
       </PageTitle>
 
       <Table
@@ -92,7 +92,7 @@ const SpecialtyList = () => {
       />
 
       <Modal
-        title="Delete Specialty"
+        title="Xóa chuyên khoa"
         open={!!deleteSpecialtyId}
         onOk={() => {
           specialtyApi.deleteById(deleteSpecialtyId).then((res) => {
@@ -100,7 +100,7 @@ const SpecialtyList = () => {
               setData(res.data);
               setDeleteSpecialtyId(null);
               api.success({
-                message: "Success",
+                message: "",
                 description: "Xóa thành công",
                 placement: "top",
               });
@@ -111,7 +111,7 @@ const SpecialtyList = () => {
         centered
         mousePosition={{}}
       >
-        Xóa chuyên môn sẽ xóa hết những thứ liên quan đến chuyên môn. Tiếp tục?
+        Xóa chuyên khoa sẽ xóa hết những thứ liên quan đến chuyên khoa. Tiếp tục?
       </Modal>
       {contextHolder}
     </>
